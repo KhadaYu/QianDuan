@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+*{
+	padding: 0;
+	margin: 0;
+	font-family: Microsoft YaHei;
+}
+.banner{
+	width: 1200px;
+	height: 500px;
+	margin: 30px auto;
+}
+.banner-tab{
+	width: 1200px;
+	height: 40px;
+	font-size: 0;
+}
+.alltab{
+	width: 300px;
+	height: 40px;
+	line-height: 40px;
+	display: inline-block;
+	text-align: center;
+	font-size: 22px;
+	color: #666;
+	border-radius:2px;
+}
+.tab0{
+	background: #ffcc00;
+	font-weight: bold;
+}
+.banner-pic{
+	width: 1200px;
+	height: 460px;
+	position: relative;
+	overflow: hidden;
+}
+.allpic{
+	position: absolute;
+	width: 1200px;
+	height: 460px;
+	top: 0;
+	display: none;
+}
+.pic0{
+	background: url(img/0.jpg);
+	display: block;
+}
+.pic1{
+	background: url(img/1.jpg);
+}
+.pic2{
+	background: url(img/2.jpg);
+}
+.pic3{
+	background: url(img/3.jpg);
+}
+	</style>
+</head>
+<body>
+	<div class="banner" id="banner">
+		<div class="banner-tab" id="banner-tab">
+			<a href="javascript:;"><div class="alltab tab0">首页</div></a>
+			<a href="javascript:;"><div class="alltab tab1">点击看看</div></a>
+			<a href="javascript:;"><div class="alltab tab2">会自动的</div></a>
+			<a href="javascript:;"><div class="alltab tab3">我的网站</div></a>
+		</div>
+		<div class="banner-pic">
+			<div class="allpic pic0"></div>
+			<div class="allpic pic1"></div>
+			<div class="allpic pic2"></div>
+			<div class="allpic pic3"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+var index=0,
+	timer=null,
+	banner=document.getElementById("banner"),
+	allpic=document.getElementsByClassName("allpic"),
+	alltab=document.getElementsByClassName("alltab"),
+	aclick=document.getElementsByTagName("a");
+banner.onmouseover=function(){
+	clearInterval(timer);
+}
+/*当打开网页，图片自动变化*/
+banner.onmouseout=function(){
+	timer=setInterval(function(){
+		index++;
+		if(index>3) index=0;
+		changTab();
+		changImg();	
+	},1000)
+}
+banner.onmouseout();
+/*改变图片函数*/
+var changImg=function(){
+	for(var i=0;i<allpic.length;i++){
+		allpic[i].style.display="none";
+	}
+		allpic[index].style.display="block";
+}
+/*tab样式随img自动变化*/
+var changTab=function(){
+	for(var t=0;t<alltab.length;t++){
+		alltab[t].style.background="#fff";
+		alltab[t].style.fontWeight="normal";
+	}
+		alltab[index].style.background="#ffcc00";
+		alltab[index].style.fontWeight="bold";
+}
+/*手动切换标签*/
+var clickTab=function(){	
+	for(var a=0;a<aclick.length;a++){
+		aclick[a].id=a;console.log(a);
+		aclick[a].onclick=function(){
+			index=this.id;
+			changImg();
+			changTab();
+		}
+	}
+}
+clickTab();
+	</script>
+</body>
+</html>
