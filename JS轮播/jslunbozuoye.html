@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title></title>
-	<style type="text/css">
-	*{
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+*{
 	padding: 0;
 	margin: 0;
 	font-family: Microsoft YaHei;
@@ -59,7 +59,7 @@
 .pic3{
 	background: url(img/3.jpg);
 }
-	</style>
+</style>
 </head>
 <body>
 	<div class="banner" id="banner">
@@ -77,53 +77,53 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-var index=0,
-	timer=null,
-	banner=document.getElementById("banner"),
-	allpic=document.getElementsByClassName("allpic"),
-	alltab=document.getElementsByClassName("alltab"),
-	aclick=document.getElementsByTagName("a");
-banner.onmouseover=function(){
-	clearInterval(timer);
-}
-/*当打开网页，图片自动变化*/
-banner.onmouseout=function(){
-	timer=setInterval(function(){
-		index++;
-		if(index>3) index=0;
-		changTab();
-		changImg();	
-	},1000)
-}
-banner.onmouseout();
-/*改变图片函数*/
-var changImg=function(){
-	for(var i=0;i<allpic.length;i++){
-		allpic[i].style.display="none";
+	var index=0,
+		timer=null,
+		banner=document.getElementById("banner"),
+		allpic=document.getElementsByClassName("allpic"),
+		alltab=document.getElementsByClassName("alltab"),
+		aclick=document.getElementsByTagName("a");
+	banner.onmouseover=function(){
+		clearInterval(timer);
 	}
-		allpic[index].style.display="block";
-}
-/*tab样式随img自动变化*/
-var changTab=function(){
-	for(var t=0;t<alltab.length;t++){
-		alltab[t].style.background="#fff";
-		alltab[t].style.fontWeight="normal";
-	}
-		alltab[index].style.background="#ffcc00";
-		alltab[index].style.fontWeight="bold";
-}
-/*手动切换标签*/
-var clickTab=function(){	
-	for(var a=0;a<aclick.length;a++){
-		aclick[a].id=a;console.log(a);
-		aclick[a].onclick=function(){
-			index=this.id;
-			changImg();
+	/*当打开网页，图片自动变化*/
+	banner.onmouseout=function(){
+		timer=setInterval(function(){
+			index++;
+			if(index>3) index=0;
 			changTab();
+			changImg();	
+		},1000)
+	}
+	banner.onmouseout();
+	/*改变图片函数*/
+	var changImg=function(){
+		for(var i=0;i<allpic.length;i++){
+			allpic[i].style.display="none";
+		}
+			allpic[index].style.display="block";
+	}
+	/*tab样式随img自动变化*/
+	var changTab=function(){
+		for(var t=0;t<alltab.length;t++){
+			alltab[t].style.background="#fff";
+			alltab[t].style.fontWeight="normal";
+		}
+			alltab[index].style.background="#ffcc00";
+			alltab[index].style.fontWeight="bold";
+	}
+	/*手动切换标签*/
+	var clickTab=function(){	
+		for(var a=0;a<aclick.length;a++){
+			aclick[a].id=a;console.log(a);
+			aclick[a].onclick=function(){
+				index=this.id;
+				changImg();
+				changTab();
+			}
 		}
 	}
-}
-clickTab();
+	clickTab();
 	</script>
 </body>
 </html>
